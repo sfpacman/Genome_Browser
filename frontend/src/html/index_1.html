@@ -2,36 +2,21 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title> Mike Lost his laptop </title>
+<title> ChromoExploer- a Chromosome Database </title>
+<!--<link rel="shortcut icon" href="/home/yup/bioinfo/biocomp2/icon.png" type="image/x-icon" /> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="shortcut icon" href="/home/yup/bioinfo/biocomp2/icon.png" type="image/x-icon" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<script type="text/javascript">
-$(function(){
 
-  var currentValue = $('#currentValue');
-  
-  $('#test').change(function(){
-      currentValue.html(this.value);
-  });
-   
-  // Trigger the event on load, so
-  // the value field is populated:
-
-  $('#test').change();
-
-});
-
-</script>
 <style type="text/css">
-  body { color: #65A3FF; background: white; }
+
+  body { color: #65A3FF; background: white; overflow: hidden;}
 .start{ background: #79143D ;  text-alignt: center; margin: auto;}
-.chrom { background-image: url("/home/yup/bioinfo/biocomp2/ncfetch.png");           
+.chrom { background-image: url("misc/ncfetch.png");           
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain 50% ;
@@ -52,7 +37,7 @@ input[type='range']  {
 <div class="start">
   <div class="media">
     <div class="media-left">
-    <img src="owl.jpg" alt="owl" class="media-object" style="opacity: 0.6;width:250px"> 
+    <img src="misc/owl.jpg" alt="owl" class="media-object" style="opacity: 0.6;width:250px"> 
   </div>
   <div class="media-body" >
   <h1 class="media-heading"> ChromoExplorer</h1>
@@ -72,21 +57,17 @@ input[type='range']  {
 <form>
   <input type="text" class="form-control" id="query" placeholder="How can I Help ?... ">
 </form>
+
 <script>
-$('#query').keypress(function (e){
-  var key = e.which ;
-  var textboxValue =  $('#query').val();
-    if( key == 13){    
-      alert('you enter ' + textboxValue);
-      console.log( textboxValue)
-    }
-});
+
 </script>
+<li> </li> 
 </div>
+
 <div class= 'row'>
   <div class="col-sm-4">
     <div class="card">
-      <img src="img1.jpg" alt="Jane" style="width:100%">
+      <img src="img1.jpg" alt="Chiara" style="width:100%">
       <div class="container">
         <h2>Chiara</h2>
         <p class="title"> The Boss</p>
@@ -99,7 +80,7 @@ $('#query').keypress(function (e){
 
   <div class="col-sm-4">
     <div class="card">
-      <img src="img2.jpg" alt="Mike" style="width:100%">
+      <img src="img2.jpg" alt="Pak" style="width:100%">
       <div class="container">
         <h2>Pak</h2>
         <p class="title">The Mastermind</p>
@@ -112,7 +93,7 @@ $('#query').keypress(function (e){
 
   <div class="col-sm-4">
     <div class="card">
-      <img src="img3.jpg" alt="John" style="width:100%">
+      <img src="img3.jpg" alt="Chelsea" style="width:100%">
       <div class="container">
         <h2>Chelsea</h2>
         <p class="title">The Enforcer</p>
@@ -124,4 +105,44 @@ $('#query').keypress(function (e){
   </div>
 </div>
 </body>
+<script type="text/javascript">
+$(function(){
 
+  var currentValue = $('#currentValue');
+  
+  $('#test').change(function(){
+      var a = this.value
+      if (a > 0) {
+      currentValue.html(a);
+      $('#query').val("Show " + a);
+     
+      ;}
+  });
+   
+  // Trigger the event on load, so
+  // the value field is populated:
+  $('#test').change();
+  function getajsx(textboxValue, source){
+    alert('you enter ' + textboxValue);
+        if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
+  }
+   var jqxhr = $.getJSON( source, function() {
+    alert( "success" );});
+        $.getJSON(source, function(result){
+                $.each(result, function(i, field){
+                    alert(i+field)
+                    $("li").append(i + field + '<\li>');
+                });});
+      };
+  $('#query').keypress(function (e){
+
+  var key = e.which ;
+  var textboxValue =  $('#query').val();
+    if( key == 13){
+    e.preventDefault();
+    getajsx(textboxValue, dummy.json) ;   
+      
+    };});
+
+});
+</script>

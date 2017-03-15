@@ -26,7 +26,6 @@ $(function(){
   $('#test').change();
 
 });
-
 </script>
 <style type="text/css">
   body { color: #65A3FF; background: white; }
@@ -78,10 +77,23 @@ $('#query').keypress(function (e){
   var textboxValue =  $('#query').val();
     if( key == 13){    
       alert('you enter ' + textboxValue);
-      console.log( textboxValue)
-    }
-});
+      if (textboxValue == 'Show All'){
+        alert("Bingo");
+        $.getJSON("dummy.json" , function(result){
+                $.each(result, function(i, field){
+                    $("li").append(field + " ");
+                });});
+      };
+      if (textboxValue == "12"){
+        $.getJSON("getData.cgi", function(result){
+                $.each(result, function(i, field){
+                    $("div").append(field + " ");
+                });
+            });
+      }};
+    });
 </script>
+<li> hello</li>
 </div>
 <div class= 'row'>
   <div class="col-sm-4">
