@@ -11,24 +11,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<script type="text/javascript">
-$(function(){
 
-  var currentValue = $('#currentValue');
-  
-  $('#test').change(function(){
-      currentValue.html(this.value);
-  });
-   
-  // Trigger the event on load, so
-  // the value field is populated:
-
-  $('#test').change();
-
-});
-</script>
 <style type="text/css">
-  body { color: #65A3FF; background: white; }
+
+  body { color: #65A3FF; background: white; overflow: hidden;}
 .start{ background: #79143D ;  text-alignt: center; margin: auto;}
 .chrom { background-image: url("misc/ncfetch.png");           
         background-repeat: no-repeat;
@@ -71,30 +57,13 @@ input[type='range']  {
 <form>
   <input type="text" class="form-control" id="query" placeholder="How can I Help ?... ">
 </form>
+
 <script>
-$('#query').keypress(function (e){
-  var key = e.which ;
-  var textboxValue =  $('#query').val();
-    if( key == 13){    
-      alert('you enter ' + textboxValue);
-      if (textboxValue == 'Show All'){
-        alert("Bingo");
-        $.getJSON("dummy.json" , function(result){
-                $.each(result, function(i, field){
-                    $("li").append(field + " ");
-                });});
-      };
-      if (textboxValue == "12"){
-        $.getJSON("getData.cgi", function(result){
-                $.each(result, function(i, field){
-                    $("div").append(field + " ");
-                });
-            });
-      }};
-    });
+
 </script>
-<li> hello</li>
+<li> </li> 
 </div>
+
 <div class= 'row'>
   <div class="col-sm-4">
     <div class="card">
@@ -136,4 +105,44 @@ $('#query').keypress(function (e){
   </div>
 </div>
 </body>
+<script type="text/javascript">
+$(function(){
 
+  var currentValue = $('#currentValue');
+  
+  $('#test').change(function(){
+      var a = this.value
+      if (a > 0) {
+      currentValue.html(a);
+      $('#query').val("Show " + a);
+     
+      ;}
+  });
+   
+  // Trigger the event on load, so
+  // the value field is populated:
+  $('#test').change();
+  function getajsx(textboxValue, source){
+    alert('you enter ' + textboxValue);
+        if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
+  }
+   var jqxhr = $.getJSON( source, function() {
+    alert( "success" );});
+        $.getJSON(source, function(result){
+                $.each(result, function(i, field){
+                    alert(i+field)
+                    $("li").append(i + field + '<\li>');
+                });});
+      };
+  $('#query').keypress(function (e){
+
+  var key = e.which ;
+  var textboxValue =  $('#query').val();
+    if( key == 13){
+    e.preventDefault();
+    getajsx(textboxValue, dummy.json) ;   
+      
+    };});
+
+});
+</script>
