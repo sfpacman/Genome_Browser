@@ -1,6 +1,6 @@
 CREATE DATABASE Chromosome_8;
 
-CREATE TABLE Gene (
+CREATE TABLE Chromosome_8.Gene (
   Protein_product CHAR(50) NOT NULL,
   Genbank_Accession VARCHAR(6) NOT NULL,
   Chromosome_location VARCHAR(8) NOT NULL,
@@ -8,17 +8,16 @@ CREATE TABLE Gene (
   PRIMARY KEY (`Identifier`)
   );
   
-  CREATE TABLE Sequence (
+  CREATE TABLE Chromosome_8.Sequence (
   DNA_sequence LONGTEXT NOT NULL,
   Amino_Acid_Seq MEDIUMTEXT NOT NULL,
   Gene_Identifier VARCHAR(45) NOT NULL,
   INDEX `fk_Sequence_Gene_idx` (`Gene_Identifier` ASC),
   PRIMARY KEY (`Gene_Identifier`),
-  CONSTRAINT `fk_Sequence_Gene`
-    FOREIGN KEY (`Gene_Identifier`)
+    FOREIGN KEY (`Gene_Identifier`),
     );
     
-CREATE TABLE Exon (
+CREATE TABLE Chromosome_8.Exon (
   Exon_Start VARCHAR(45) NOT NULL,
   Exon_end VARCHAR(45) NOT NULL,
   Sequence_Gene_Identifier VARCHAR(45) NOT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE Exon (
     REFERENCES `Chromosome_8`.`Sequence` (`Gene_Identifier`)
     );
 
-CREATE TABLE `Restriction_Enzyme` (
+CREATE TABLE Chromosome_8.Restriction_Enzyme (
   `idRestriction_Enzyme` TEXT(7) NOT NULL,
   `Recognition_seq` MEDIUMTEXT NOT NULL,
   `Sequence_Gene_Identifier` VARCHAR(45) NOT NULL,
