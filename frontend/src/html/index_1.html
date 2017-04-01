@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title> ChromoExploer- a Chromosome Database </title>
+<title> ChromoExploer - a Chromosome Database </title>
 <!--<link rel="shortcut icon" href="/home/yup/bioinfo/biocomp2/icon.png" type="image/x-icon" /> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -14,12 +14,12 @@
 
 <style type="text/css">
 
-  body { color: #65A3FF; background: white; overflow-x: hidden;}
+  body { color: #65A3FF; background: white; overflow: hidden;}
 .start{ background: #79143D ;  text-alignt: center; margin: auto;}
 .chrom { background-image: url("misc/ncfetch.png");           
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain 50% auto;
+        background-size: contain 50% ;
         height: 250px; width: :250px;
         display: flex; }
 input[type='range']  {
@@ -34,17 +34,15 @@ input[type='range']  {
 </style>
 </head>
 <body>
-<div class="container.fluid">
 <div class="start">
   <div class="row">
-    <div class="col-sm-2">
-    <img src="misc/owl.jpg" class="img-responsive" alt="owl" style="opacity: 0.6;width:250px"> 
+    <div class="col-sm-3">
+    <img src="misc/owl.jpg" alt="owl"  style="opacity: 0.6;width:250px"> 
   </div>
- <div class="col-sm-8" >
+  <div class="col-sm-9" >
   <h1> ChromoExplorer</h1>
-  <h2> A Web Application developed by the Students from Birkbeck School of Biological Science </h2>
+   <h2> A Web Application developed by the Students from Birkbeck School of Biological Science </h2>
   </div>
-</div>
 </div>
 </div>
 <hr>
@@ -57,7 +55,7 @@ input[type='range']  {
 
 <p class="note">Current Pos: <span id="currentValue">0</span></p>
 <form>
-  <input type="text" class="form-control input-lg" id="query" placeholder="How can I Help ?... ">
+  <input type="text" class="form-control" id="query" placeholder="How can I Help ?... ">
 </form>
 
 <script>
@@ -67,7 +65,7 @@ input[type='range']  {
 </div>
 
 <div class= 'row'>
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="card">
       <img src="img1.jpg" alt="Chiara" style="width:100%">
       <div class="container">
@@ -80,7 +78,7 @@ input[type='range']  {
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="card">
       <img src="img2.jpg" alt="Pak" style="width:100%">
       <div class="container">
@@ -93,7 +91,7 @@ input[type='range']  {
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="card">
       <img src="img3.jpg" alt="Chelsea" style="width:100%">
       <div class="container">
