@@ -1,0 +1,21 @@
+<div class="table-responsive" >          
+ <table class="table table-hover">
+   <thead>
+     <tr>
+       <th>gene identifiers</th>
+       <th>protein product names</th>
+       <th>Genbank accession</th>
+       <th>chromosomal location</th>
+     </tr>
+   </thead>   
+   <tbody>
+   {% for item in items %}
+   <tr>
+   <td>{{item.id}}</td>
+   <td>{{item.name}}</td>
+   <td>{{item.an}}</td>
+   <td>{{item.location}}</td>
+   </tr>
+   {% endfor %}
+   </tbody>
+   </table>
