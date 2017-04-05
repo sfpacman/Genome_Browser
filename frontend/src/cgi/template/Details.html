@@ -15,19 +15,61 @@
 <style type="text/css">
 
   body { color: #65A3FF; background: white; overflow-x: hidden;}
+
   </style>
 </head>
 <body>
 <div class="container.fluid">
-<h1> {{ genes }} </h1>
-<div class="seq">
-<h2> Sequences</h2>
+<h1 class="header"> {{ genes.name }} </h1>
+<div class="Summary">
+<div class="row">
+<div class="col col-sm-4"> Chromosomal location </div>
+<div class="desc col-sm-4"> {{ genes.loaction}} </div>
 </div>
-<div class = "codon">
+<div class="row">
+<div class="col col-sm-4"> Protein product names </div>
+<div class="desc col-sm-4"> {{ genes.p_name}} </div>
+</div>
+<div class="row">
+<div class="col col-sm-4"> Genbank accession  </div>
+<div class="desc col-sm-4"> {{ genes.ga}} </div>		
+</div>
+<div class="row">
+<div class="col col-sm-4"> Sequences </div>
+<div class="desc col-sm-4"> 
+<button data-toggle="collapse" data-target="#seq"> Display</button>
+ </div>
+ </div>
+<div class="row">
+<div class="col col-sm-4"> Codon Usage Analysis  </div>
+<div class="desc col-sm-4"> 
+<button data-toggle="collapse" data-target="#codon"> Generate </button>
+ </div>
+  </div>
+ <div class="row">
+<div class="col col-sm-4"> Restriction Enzyme </div>
+<div class="desc col-sm-4"> 
+<button data-toggle="collapse" data-target="#enzyme"> Compute</button>
+ </div>
+  </div>
+ <!--
+<div class="panel panel-default" id="seq">
+<div class="panel-heading">
+ <h4 class="panel-title">
+    <a data-toggle="collapse" href="#collapse1">Sequences</a>
+</h4>
+  </div>
+<div id="collapse1" class="panel-collapse collapse">
+<div class="panel-body">Panel Content</div>
+
+</div>
+<div  class="panel panel-default" id="codon">
 <h2> Codon Usage Analysis</h2>
 </div>
-<div class = 'enzyme'>
+<div class = "panel panel-default" id='enzyme'>
 <h2> Restritcion Enzyme</h2>
+</div>
+ -->
 </div>
 </div>
 </body>
