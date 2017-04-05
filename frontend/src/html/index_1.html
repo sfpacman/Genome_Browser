@@ -124,8 +124,11 @@ $(function(){
     alert('you enter ' + textboxValue);
         if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
   }
-   var jqxhr = $.get( source, function() {
-    alert( "success" );});
+   var jqxhr = $.ajax( {url:source,dataType: 'html'}) .done(function() {
+    alert( "success" );})
+     .fail(function() {
+    alert( jqxhr.status );
+  }) ;
         $.get(source, function(result){
           $("#result").html(result) 
               });
