@@ -13,11 +13,12 @@ def getdummy(n):
 	return items
 
 
-
+form = cgi.FieldStorage()
 templateLoader = jinja2.FileSystemLoader( searchpath="template" )
 templateEnv = jinja2.Environment( loader=templateLoader )
 
 tempSummary = templateEnv.get_template( "Summary.html" )
 
 items=getdummy(10)
+
 print(tempSummary.render(items = items))
