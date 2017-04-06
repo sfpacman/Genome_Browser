@@ -4,7 +4,6 @@
 <head>
 <title> ChromoExploer- a Chromosome Database </title>
 <!--<link rel="shortcut icon" href="/home/yup/bioinfo/biocomp2/icon.png" type="image/x-icon" /> -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -60,11 +59,7 @@ input[type='range']  {
 <form>
   <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?... ">
 </form>
-
-<script>
-
-</script>
-<li> </li> 
+ <div id="result"></div>
 </div>
 
 <div class= 'row'>
@@ -129,13 +124,14 @@ $(function(){
     alert('you enter ' + textboxValue);
         if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
   }
-   var jqxhr = $.getJSON( source, function() {
-    alert( "success" );});
-        $.getJSON(source, function(result){
-                $.each(result, function(i, field){
-                    alert(i+field)
-                    $("li").append(i + field + '<\li>');
-                });});
+   var jqxhr = $.ajax( {url:source,dataType: 'html'}) .done(function() {
+    alert( "success" );})
+     .fail(function() {
+    alert( jqxhr.status );
+  }) ;
+        $.get(source, function(result){
+          $("#result").html(result) 
+              });
       };
   $('#query').keypress(function (e){
 
@@ -143,7 +139,7 @@ $(function(){
   var textboxValue =  $('#query').val();
     if( key == 13){
     e.preventDefault();
-    getajsx(textboxValue, dummy.json) ;   
+    getajsx(textboxValue, "../cgi/summary.py") ;   
       
     };});
 
