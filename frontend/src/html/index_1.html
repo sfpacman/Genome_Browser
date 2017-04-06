@@ -57,7 +57,7 @@ input[type='range']  {
 
 <p class="note">Current Pos: <span id="currentValue">0</span></p>
 <form>
-  <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?... ">
+  <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
 </form>
  <div id="result"></div>
 </div>
@@ -102,6 +102,9 @@ input[type='range']  {
     </div>
   </div>
 </div>
+<form>
+
+</form>
 </body>
 <script type="text/javascript">
 $(function(){
@@ -129,7 +132,7 @@ $(function(){
      .fail(function() {
     alert( jqxhr.status );
   }) ;
-        $.get(source, function(result){
+        $.get(source, {query:textboxValue},function(result){
           $("#result").html(result) 
               });
       };

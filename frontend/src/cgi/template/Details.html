@@ -38,7 +38,7 @@
 <div class="row">
 <div class="col col-sm-4"> Sequences </div>
 <div class="desc col-sm-4"> 
-<button data-toggle="collapse" data-target="#seq"> Display</button>
+<button data-toggle="collapse" id="DNA_display" data-target="#seq"> Display</button>
  </div>
  </div>
 <div class="row">
@@ -47,10 +47,19 @@
 <button data-toggle="collapse" data-target="#codon"> Generate </button>
  </div>
   </div>
+ 
  <div class="row">
 <div class="col col-sm-4"> Restriction Enzyme </div>
 <div class="desc col-sm-4"> 
-<button data-toggle="collapse" data-target="#enzyme"> Compute</button>
+<div class="dropdown">
+<button class ="btn btn-default dropdown-toggle" type ="button" data-toggle="dropdown" id="enzyme_menu" > Compute </span></button>
+{% for item in items %}
+<ul class="dropdown-menu" role="menu" aria-labelledby="enzyme_menu">
+<li role="presentation"><a role="menuitem" id="enzyme_item" href="#"> {{item}} </a></li>
+</ul>
+{% endfor %}
+</div>
+</div>
  </div>
   </div>
  
@@ -65,8 +74,13 @@
   </div>
 <div id="collapse1" class="panel-collapse collapse">
 <div class="panel-body">
-<h4>DNA Sequence</h4>
+<div class="row">
+<div class="col-sm-4"><h3> DNA Sequence</h3></div>
+<div class="col-sm-2"><p><a id=change_color href="#"> Show Coding Sequence </a></p></div>
+</div>
+<div id=dna_seq>
 <p>{{gene.DNA}}</p>
+</div>
 </div>
 </div>
 <div id="collapse2" class="panel-collapse collapse">
@@ -75,6 +89,48 @@
 <p>{{gene.Protein}}</p>
 </div>
 </div>
+</div>
+<div class="panel panel-default collapse" id="enzyme">
+<div class="panel-heading">
+ <h4 class="panel-title"> Restrtiction Enzyme </h4>
+ </div>
+ <div class="panel-body"> Here it is
+</div>
+</div>
+</body>
+
+<script type="text/javascript">
+var color_click="";
+$("#change_color").click (function (event) {
+if( color_click == "changed"){ 
+	var insert = "{{gene.DNA}}"; color_click = ""; link_txt = "Show Coding Sequence";}
+else {insert ="{{gene.DNA_C}}"; color_click ="changed"; link_txt = "Hide Coding Sequence"}
+$("#dna_seq p").html(insert);
+$("#change_color").html(link_txt);}
+)
+var display_click="";
+$("#DNA_display").click (function (event) {
+	if( display_click == "changed"){ 
+       button_text= "Display"; display_click = "";
+	 }
+	 else { button_text= "Hide"; display_click = "changed";}
+	 $("#DNA_display").text(button_text);
+})
+var enzyme_click ="";
+$("#enzyme_item").click (function (event) {
+	if( enzyme_click == ""){
+$("#enzyme").attr("class", "panel-default collapse in");
+enzyme_click="changed"; $("#enzyme_menu").text("Compute - Click to Close")
+}
+})
+$("#enzyme_menu").click (function (event) {
+	if( enzyme_click == "changed"){
+$("#enzyme").attr("class", "panel-default collapse");
+    enzyme_click =""; $("#enzyme_menu").text("Compute")
+	}
+})
+</script>
+
 <!--
 <div  class="panel panel-default" id="codon">
 <h2> Codon Usage Analysis</h2>
@@ -82,7 +138,7 @@
 <div class = "panel panel-default" id='enzyme'>
 <h2> Restritcion Enzyme</h2>
 </div>
- -->
+
 </div>
 </div>
-</body>
+</body> -->
