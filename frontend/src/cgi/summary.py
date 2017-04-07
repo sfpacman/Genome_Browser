@@ -20,5 +20,6 @@ templateEnv = jinja2.Environment( loader=templateLoader )
 tempSummary = templateEnv.get_template( "Summary.html" )
 
 items=getdummy(10)
+print ("Content-Type: text/html\n")
 
 print(tempSummary.render(items = items))

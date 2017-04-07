@@ -16,24 +16,24 @@
 <style type="text/css">
 
   body { color: #65A3FF; background: white; overflow-x: hidden;}
-
+  p {word-wrap: break-word;}
   </style>
 </head>
 <body>
 <div class="container.fluid">
-<h1 class="header"> {{ genes.name }} </h1>
+<h1 class="header"> {{ gene.id }} </h1>
 <div class="Summary">
 <div class="row">
 <div class="col col-sm-4"> Chromosomal location </div>
-<div class="desc col-sm-4"> {{ genes.loaction}} </div>
+<div class="desc col-sm-4"> {{ gene.location}} </div>
 </div>
 <div class="row">
 <div class="col col-sm-4"> Protein Product names </div>
-<div class="desc col-sm-4"> {{ genes.p_name}} </div>
+<div class="desc col-sm-4"> {{ gene.p_name}} </div>
 </div>
 <div class="row">
 <div class="col col-sm-4"> Genbank accession  </div>
-<div class="desc col-sm-4"> {{ genes.ga}} </div>		
+<div class="desc col-sm-4"> {{ gene.ga}} </div>		
 </div>
 <div class="row">
 <div class="col col-sm-4"> Sequences </div>
@@ -54,12 +54,14 @@
 <div class="dropdown">
 <button class ="btn btn-default dropdown-toggle" type ="button" data-toggle="dropdown" id="enzyme_menu" > Compute </span></button>
 {% set counter = 0 %}
-{% for item in items %}
+
 <ul class="dropdown-menu" role="menu" aria-labelledby="enzyme_menu">
-<li role="presentation"><a role="menuitem" id="enzyme_item" href="#"> {{item}} </a></li>
+{% for item in items -%}
+<li role="presentation"><a class="r_enzyme"role="menuitem" id="enzyme_item" href="#"> {{item}} </a></li>
+{%- endfor %}
 </ul>
-{% set counter = counter + items|length %}
-{% endfor %}
+
+
 </div>
 </div>
  </div>
@@ -119,7 +121,7 @@ $("#DNA_display").click (function (event) {
 	 $("#DNA_display").text(button_text);
 })
 var enzyme_click =""
-$("#enzyme_item").click (function (event) {
+$(".r_enzyme").click (function (event) {
 	if( enzyme_click == ""){
    enzyme_click="changed";
    $("#enzyme_menu").text("Compute - Click to Close");
@@ -133,7 +135,7 @@ $("#enzyme_item").click (function (event) {
               });})
      .fail(function() {
      $("#enzyme").attr("class", "panel-default collapse in");
-     $("#enzyme_display").html('<p><span class="glyphicon glyphicon-thumbs-down"></span>Sorry</p>')
+     $("#enzyme_display").html('<p><span class="glyphicon glyphicon-alert"></span>Error-And just when I though things were starting to get better, everything had gone wrong again. </p>')
     alert( jqxhr.status );
 
   });

@@ -1,10 +1,20 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 import cgi
 import cgitb
 import jinja2
+import random
 cgitb.enable()
 
-def getdummy(n):
+def getdummyenzyme():
+	enzyme=["ABC","DEF","CGI"]
+	return enzyme    
+def getdummy_entry(name):
+	i=int(random.uniform(1, 26))
+	translation= "ERENEVISSAELRLFREQVDQGPDWERGFHRINIYEVMKPPAEVVPGHLITRLLDTRLVHHNVTRWETFDVSPAVLRWTREKQPNYGLAIEVTHLHQTRTHQGQHVRISRSLPQGSGNWAQLRPLLVTFGHDGRGHALTRRRRAKRSPKHHSQRARKKNKNCRRHSLYVDFSDVGWNDWIVAPPGYQAFYCHGDCPFPLADHLNSTNHAIVQTLVNSVNSSIPKACCVPTELSAISMLYLDEYDKV"
+	DNA="GGAGGGGCCGCCGGGGAAGAGGAGGAGGAAGGAAAGAAAGAAAGCGAGGGAGGGAAAGAGGAGGAAGGAAGATGCGAGAAGGCAGAGGAGGAGGGAGGGAGGGAAGGAGCGCGGAGCCCGGCCCGGAAGCTAGGTGAGTGTGGCATCCGAGCTGAGGGACGCGAGCCTGAGACGCCGCTGCTGCTCCGGCTGAGTATCTAGCTTGTCTCCCCGATGGGATTCCCGTCCAAGCTATCTCGAGCCTGCAGCGCCACAGTCCCCGGCCCTCGCCCAGGTTCACTGCAACCGTTCAGAGGTCCCCAGGAGCTGCTGCTGGCGAGCCCGCTACTGCAGGGACCTATGGAGCCATTCCGTAGTGCCATCCCGAGCAACGCACTGCTGCAGCTTCCCTGAGCCTTTCCAGCAAGTTTGTTCAAGATTGGCTGTCAAGAATCATGGACTGTTATTATATGCCTTGTTTTCTGTCAAGACACCATGATTCCTGGTAACCGAATGCTGATGGTCGTTTTATTATGCCAAGTCCTGCTAGGAGGCGCGAGCCATGCTAGTTTGATACCTGAGACGGGGAAGAAAAAAGTCGCCGAGATTCAGGGCCACGCGGGAGGACGCCGCTCAGGGCAGAGCCATGAGCTCCTGCGGGACTTCGAGGCGACACTTCTGCAGATGTTTGGGCTGCGCCGCCGCCCGCAGCCTAGCAAGA"  
+	items = dict( id=name, p_name=chr(97+i)+"_object", ga= chr(97+i)+str(i*1000), location = "unkown", DNA=DNA, Protein = translation , DNA_C="???")
+	return items
+def getdummy(type,n):
 	items=[]
 	for i in range(0,n):
 		x = i -26 *int(i/26) if i > 26 else i
@@ -12,13 +22,15 @@ def getdummy(n):
 		items.append(insert)
 	return items
 
-
 form = cgi.FieldStorage()
+items = getdummy_entry("24")
+title = "Further information for"+ str(itmes.id)
+enzyme_list = getdummyenzyme()
 templateLoader = jinja2.FileSystemLoader( searchpath="template" )
 templateEnv = jinja2.Environment( loader=templateLoader )
 
 tempSummary = templateEnv.get_template( "Details.html" )
 
 #items=getdummy(10)
-
-print(tempSummary.render(items = items))
+print ("Content-Type: text/html\n")
+print(tempSummary.render(gene = items,items=enzyme_list,title=title))
