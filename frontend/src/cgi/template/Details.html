@@ -53,10 +53,12 @@
 <div class="desc col-sm-4"> 
 <div class="dropdown">
 <button class ="btn btn-default dropdown-toggle" type ="button" data-toggle="dropdown" id="enzyme_menu" > Compute </span></button>
+{% set counter = 0 %}
 {% for item in items %}
 <ul class="dropdown-menu" role="menu" aria-labelledby="enzyme_menu">
 <li role="presentation"><a role="menuitem" id="enzyme_item" href="#"> {{item}} </a></li>
 </ul>
+{% set counter = counter + items|length %}
 {% endfor %}
 </div>
 </div>
@@ -94,7 +96,7 @@
 <div class="panel-heading">
  <h4 class="panel-title"> Restrtiction Enzyme </h4>
  </div>
- <div class="panel-body"> Here it is
+ <div class="panel-body" id="enzyme_display"> Here it is
 </div>
 </div>
 </body>
@@ -116,17 +118,37 @@ $("#DNA_display").click (function (event) {
 	 else { button_text= "Hide"; display_click = "changed";}
 	 $("#DNA_display").text(button_text);
 })
-var enzyme_click ="";
+var enzyme_click =""
 $("#enzyme_item").click (function (event) {
 	if( enzyme_click == ""){
+   enzyme_click="changed";
+   $("#enzyme_menu").text("Compute - Click to Close");
+   source = "../cgi/summary.py";
+   textboxValue = $(this).text();
+   alert( textboxValue) ;
+   var jqxhr = $.ajax( {url:source,dataType: 'html'}).done(function() {
+   alert( "success" );
+   $.get(source, {query:textboxValue},function(result){
+          $("#enzyme_display").html(result) 
+              });})
+     .fail(function() {
+     $("#enzyme").attr("class", "panel-default collapse in");
+     $("#enzyme_display").html('<p><span class="glyphicon glyphicon-thumbs-down"></span>Sorry</p>')
+    alert( jqxhr.status );
+
+  });
 $("#enzyme").attr("class", "panel-default collapse in");
-enzyme_click="changed"; $("#enzyme_menu").text("Compute - Click to Close")
+$("#enzyme_menu").text("Compute - Click to Close");
 }
 })
+
+ 
 $("#enzyme_menu").click (function (event) {
 	if( enzyme_click == "changed"){
 $("#enzyme").attr("class", "panel-default collapse");
-    enzyme_click =""; $("#enzyme_menu").text("Compute")
+    enzyme_click =""; 
+    $("#enzyme_menu").text("Compute");
+    enzyme_click == "";
 	}
 })
 </script>
