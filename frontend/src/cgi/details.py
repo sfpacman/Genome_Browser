@@ -24,8 +24,8 @@ def getdummy(type,n):
 
 form = cgi.FieldStorage()
 if "search" in form:
-	items = getdummy_entry("24")
-	title = "Further information for"+ str(itmes.id)
+	items = getdummy_entry(form["search"].value")
+	title = "Further information for"+ str(items["id"])
 	enzyme_list = getdummyenzyme()
 	templateLoader = jinja2.FileSystemLoader( searchpath="template" )
 	templateEnv = jinja2.Environment( loader=templateLoader )
@@ -33,6 +33,9 @@ if "search" in form:
 	print ("Content-Type: text/html\n")
 	print(tempSummary.render(gene = items,items=enzyme_list,title=title))
 elif "enzyme" in form:
+	print ("Content-Type: text/html\n")
+	print (form["enzyme"].value)
+else:
 	print ("Content-Type: text/html\n")
 #items=getdummy(10)
 

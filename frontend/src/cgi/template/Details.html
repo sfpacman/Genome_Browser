@@ -130,15 +130,16 @@ $(".r_enzyme").click (function (event) {
    textboxValue = $(this).text();
    var jqxhr = $.ajax( {url:source,dataType: 'html'}).done(function() {
    alert( "success" );
-   $.get(source, {query:textboxValue},function(result){
-          $("#enzyme_display").html(result) 
-              });})
+ })
      .fail(function() {
      $("#enzyme").attr("class", "panel-default collapse in");
      $("#enzyme_display").html('<p><span class="glyphicon glyphicon-alert"></span>Error: '+warning_msg[Math.round(Math.random())]+' </p>');
     alert( jqxhr.status );
 
   });
+    $.get(source, {enzyme:textboxValue},function(result){
+          $("#enzyme_display").html(result) 
+              });
 $("#enzyme").attr("class", "panel-default collapse in");
 $("#enzyme_menu").text("Compute - Click to Close");
 }
