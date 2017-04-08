@@ -120,14 +120,14 @@ $("#DNA_display").click (function (event) {
 	 else { button_text= "Hide"; display_click = "changed";}
 	 $("#DNA_display").text(button_text);
 })
-var enzyme_click =""
+var enzyme_click ="";
+var warning_msg= ["You’ve probably heard it before—if not, you’ve likely experienced it yourself","And just when I though things were starting to get better, everything had gone wrong again."];
 $(".r_enzyme").click (function (event) {
 	if( enzyme_click == ""){
    enzyme_click="changed";
    $("#enzyme_menu").text("Compute - Click to Close");
-   source = "../cgi/summary.py";
+   source = "../cgi/details.py";
    textboxValue = $(this).text();
-   alert( textboxValue) ;
    var jqxhr = $.ajax( {url:source,dataType: 'html'}).done(function() {
    alert( "success" );
    $.get(source, {query:textboxValue},function(result){
@@ -135,7 +135,7 @@ $(".r_enzyme").click (function (event) {
               });})
      .fail(function() {
      $("#enzyme").attr("class", "panel-default collapse in");
-     $("#enzyme_display").html('<p><span class="glyphicon glyphicon-alert"></span>Error-And just when I though things were starting to get better, everything had gone wrong again. </p>')
+     $("#enzyme_display").html('<p><span class="glyphicon glyphicon-alert"></span>Error: '+warning_msg[Math.round(Math.random())]+' </p>');
     alert( jqxhr.status );
 
   });
