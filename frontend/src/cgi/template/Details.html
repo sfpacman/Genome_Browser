@@ -56,6 +56,8 @@
 {% set counter = 0 %}
 
 <ul class="dropdown-menu" role="menu" aria-labelledby="enzyme_menu">
+<li class="disabled" role="presentation"><a class="r_enzyme_1"role="menuitem" id="get_enzyme_item" href="#"> Customed Enzyme </a></li>
+<li class="divider"></li>
 {% for item in items -%}
 <li role="presentation"><a class="r_enzyme"role="menuitem" id="enzyme_item" href="#"> {{item}} </a></li>
 {%- endfor %}
