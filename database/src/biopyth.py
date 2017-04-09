@@ -2,7 +2,6 @@
 
 import sys
 import Bio
-from Bio import SeqIO
 from Bio import GenBank
 
 #for the gene table
@@ -32,10 +31,12 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 	  if feature.key == "gene":
     		for qualifier in feature.qualifiers:
 		if qualifier.key =="/gene=":
+				#cut off the quotation marks
 				gene_name = qualifier.value[1:-1]		
     if record.features == "source"
 		   for qualifier in feature.qualifiers:
 	    		if qualifier.key =="/map=":
+				     #cut off the quotation marks
 				     chrom_loc = qualifier.value[1:-1]
   	if record.features == "CDS"
 		  for qualifiers in feature.qualifers:
@@ -44,6 +45,7 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 		
 for record in GenBank.parse(open("chrom_CDS_8")):   
      if record.feature == "exon":
+	#split the two locations into seperate strings
         locations = feature.location.split("..")
         start = int(locations[0])
         end = int(locations[1]
