@@ -5,16 +5,24 @@ import Bio
 from Bio import SeqIO
 from Bio import GenBank
 
-Enz_name = {'EcoRI':{"GAATTC","CTTAAG"}, 'BamHI':{"GGATCC", "CCTAGG"},'BsuMI':{"CTCGAG", "GAGCTC"}}
-
-seq = []
-AA_seq = []
-exon = []
-locus = []
-features = []
+#for the gene table
+gene_name = []
 accession = []
 protein_product = []	
 chrom_loc = []
+
+#for the Sequence table
+seq = []
+AA_seq = []
+
+#for the Exon table
+exon = []
+
+#for the Restriction_Enzyme table
+#1st value is the recognition sequence read in 5' and the 2nd value is the recognition sequence read in 3' direction
+Enz_name = {'EcoRI':{"GAATTC","CTTAAG"}, 'BamHI':{"GGATCC", "CCTAGG"},'BsuMI':{"CTCGAG", "GAGCTC"}}
+
+feature = record.features
 for record in GenBank.parse(open("chrom_CDS_8")):
     locus.append(record.locus)
     AA_seq.append(record.sequence)
