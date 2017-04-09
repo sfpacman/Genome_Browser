@@ -5,6 +5,8 @@ import Bio
 from Bio import SeqIO
 from Bio import GenBank
 
+Enz_name = {'EcoRI':{"GAATTC","CTTAAG"}, 'BamHI':{"GGATCC", "CCTAGG"},'BsuMI':{"CTCGAG", "GAGCTC"}}
+
 seq = []
 AA_seq = []
 exon = []
