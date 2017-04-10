@@ -23,25 +23,25 @@ Enz_name = {'EcoRI':{"GAATTC","CTTAAG"}, 'BamHI':{"GGATCC", "CCTAGG"},'BsuMI':{"
 
 feature = record.features
 for record in GenBank.parse(open("chrom_CDS_8")):
-    locus.append(record.locus)
-    AA_seq.append(record.sequence)
     accession.append(record.accession)
     seq.append(record.sequence)
     for feature in record.features:
-	  if feature.key == "gene":
+	   if feature.features == "gene":
     		for qualifier in feature.qualifiers:
-		if qualifier.key =="/gene=":
+			if qualifier.key =="/gene=":
 				#cut off the quotation marks
 				gene_name = qualifier.value[1:-1]		
-    if record.features == "source"
+    	  if record.features == "source":
 		   for qualifier in feature.qualifiers:
 	    		if qualifier.key =="/map=":
 				     #cut off the quotation marks
 				     chrom_loc = qualifier.value[1:-1]
-  	if record.features == "CDS"
+  	 if record.features == "CDS":
 		  for qualifiers in feature.qualifers:
-			    if qualifier.key =="/product="
+			    if qualifier.key =="/product=":
 				  protein_product = qualifier.value[1:-1]
+			    if qualifier.key =="/translation=": 
+				AA_seq = qualifier.value[1:-1]
 		
 for record in GenBank.parse(open("chrom_CDS_8")):   
      if record.feature == "exon":
