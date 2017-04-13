@@ -5,11 +5,10 @@ import jinja2
 import getdummy
 cgitb.enable()
 
-
 script_path="../cgi/details.py"
 form = cgi.FieldStorage()
 if "search" in form:
-	items = getdummy.getdummy_entry(form["search"].value")
+	items = getdummy.getdummy_entry(form["search"].value)
 	title = "Further information for"+ str(items["id"])
 	enzyme_list = getdummy.getdummyenzyme()
 	templateLoader = jinja2.FileSystemLoader( searchpath="template" )
@@ -22,5 +21,3 @@ elif "enzyme" in form:
 	print (form["enzyme"].value)
 else:
 	print ("Content-Type: text/html\n")
-#items=getdummy(10)
-
