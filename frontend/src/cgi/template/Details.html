@@ -128,7 +128,7 @@ $(".r_enzyme").click (function (event) {
 	if( enzyme_click == ""){
    enzyme_click="changed";
    $("#enzyme_menu").text("Compute - Click to Close");
-   source = "../cgi/details.py";
+   source = {{script_path}} ;
    textboxValue = $(this).text();
    var jqxhr = $.ajax( {url:source,dataType: 'html'}).done(function() {
    alert( "success" );
