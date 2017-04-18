@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>{{ title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="shortcut icon" href="/home/yup/bioinfo/biocomp2/icon.png" type="image/x-icon" /> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<style type="text/css">
+
+  body { color: #65A3FF; background: white; overflow-x: hidden;}
+  p {word-wrap: break-word;}
+  .middle{
+  border-spacing: 6px;
+  padding: 0.05px;
+  border-style: none;
+  }
+  </style>
+</head>
+<body>
+<table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+    {% for i in range(col) %}
+      
+        <th>Codon</th>
+        <th>Frequency</th>
+     {% if col > 1%}
+     <th class="middle"></th>
+     {% endif %}   
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for y in range(row) %}
+    <tr>
+    {% for i in range(col) %} 
+    {% set entry = codon.popitem() %}   
+      <td> {{entry[0]}}</td> 
+      <td> {{entry[1]}}</td>
+    {% if col > 1%}
+     <td class="middle"></td>
+     {% endif %}
+      {% endfor %}
+      </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</body>
