@@ -55,7 +55,7 @@ input[type='range']  {
 </div>
 <div class="form-group">
 
-<p class="note">Current Pos: <span id="currentValue">0</span></p>
+<p class="note">Current Pos: <span id="currentValue">0</span><span style="text-align: right"><a href=# id="show_all"> Show All</a></span></p>
 <form>
   <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
 </form>
@@ -110,12 +110,14 @@ input[type='range']  {
 $(function(){
 
   var currentValue = $('#currentValue');
-  
+  var location =  ['p23.2', 'p23.1', 'p22', 'p21.3', 'p21.2', 'p21.1', 'p12', 'p11.22' ,'p11.1', 'q11.21', 'q11.22', 'q11.23', 'q12.1', 'q12.3', 'q13.2', 'q13.3', 'q21.11', 'q21.13', 'q21.3', 'q22.1', 'q22.2', 'q23.1', 'q23.3', 'q24.11', 'q24.13', 'q24.21', 'q24.22', 'q24.3'];
   $('#test').change(function(){
       var a = this.value
       if (a > 0) {
       currentValue.html(a);
-      $('#query').val("Show " + a);
+      map= location[Math.floor(a/100*27)];
+      //alert(Math.floor(a/100*27));
+      $('#query').val("Search by " + map);
      
       ;}
   });
@@ -136,13 +138,21 @@ $(function(){
           $("#result").html(result) 
               });
       };
+  // Trigger Show All 
+  $('#show_all').click(function (e){
+    $('#query').val("Show All")
+    e.preventDefault();
+    getajsx({query:textboxValue}, "../cgi/summary.py")
+
+})
+  //Trigger ajax query 
   $('#query').keypress(function (e){
 
   var key = e.which ;
   var textboxValue =  $('#query').val();
     if( key == 13){
     e.preventDefault();
-    getajsx(textboxValue, "../cgi/summary.py") ;   
+    getajsx({query:textboxValue}, "../cgi/summary.py") ;   
       
     };});
 
