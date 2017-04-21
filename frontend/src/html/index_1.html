@@ -57,7 +57,7 @@ input[type='range']  {
 
 <p class="note">Current Pos: <span id="currentValue">0</span><span style="text-align: right"><a href=# id="show_all"> Show All</a></span></p>
 <form>
-  <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
+  <input type="text" class="form-control input-lg" data-toggle="tooltip" title="Press Enter key to excute" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
 </form>
  <div id="result"></div>
 </div>
@@ -107,6 +107,10 @@ input[type='range']  {
 </form>
 </body>
 <script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+
 $(function(){
 
   var currentValue = $('#currentValue');
