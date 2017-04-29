@@ -7,7 +7,7 @@ dbpass   = "#########"
 port     = 3306	
 rest_enz = {'EcoRI':'GAATTC', 'BamHI':'GGATCC','BsuMI':'CTCGAG'}
 
-db = mysql.connector.connect(host="hope" ,port=3306,user="sc001",db="sc001",passwd="8-wh#daps")
+db = mysql.connector.connect(host="hope" ,port=3306,user="sc001",db="sc001",passwd="#########")
 
 cursor = db.cursor()
 for entry in List:
