@@ -3,7 +3,7 @@ import mysql.connector
 dbname   = "biodb"
 dbhost   = "hope"
 dbuser   = "sc001"   
-dbpass   = "8-wh#daps"   
+dbpass   = "#########"   
 port     = 3306	
 rest_enz = {'EcoRI':'GAATTC', 'BamHI':'GGATCC','BsuMI':'CTCGAG'}
 
