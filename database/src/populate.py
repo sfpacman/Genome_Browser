@@ -11,7 +11,6 @@ db = mysql.connector.connect(host="hope" ,port=3306,user="sc001",db="sc001",pass
 
 cursor = db.cursor()
 for entry in List:
-	#print(entry)
 	Genbank_Accession = entry ['accession'][0]
 	Gene_name = entry['gene_name']
 	Chromosome_location = entry ['chrom_loc']
@@ -26,10 +25,8 @@ for entry in List:
 	db.commit()
 	
 	sqlquery2= "INSERT INTO sc001.Sequence (DNA_sequence, Amino_Acid_Seq, Gene_Identifier)  VALUES ("+chr(39)+DNA_sequence+chr(39)+", "+chr(39)+Amino_Acid_Sequence+chr(39)+", "+chr(39)+Genbank_Accession+chr(39)+")ON DUPLICATE KEY UPDATE Gene_Identifier ="+chr(39)+Genbank_Accession+chr(39)+";"
-	#nrows=cursor.execute(sqlquery2)
-	#print(sqlquery)	
-	#db.commit
-	#cursor.close()
+	nrows=cursor.execute(sqlquery2)	
+	db.commit
 	for i in range(len(Exon_start)):
 		sqlquery3= "INSERT INTO sc001.Exon (Exon_Start, Exon_End, Sequence_Gene_Identifier) VALUES("+chr(39)+Exon_start[i]+chr(39)+", "+chr(39)+Exon_end[i]+chr(39)+", "+chr(39)+Genbank_Accession+chr(39)+");"
 		cursor.execute(sqlquery3)
