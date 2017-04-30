@@ -1,3 +1,5 @@
+from collections import defaultdictDict 
+
 #codon list 
 #include TAA, TAG, TGA stop codons
 
@@ -16,7 +18,7 @@ for n in range(0, len(seq), 3):
     query = seq(n=n+3)
 
 #count how many
-
+count=defaultdict(list)
 total = 0
 
 for codon in query:
