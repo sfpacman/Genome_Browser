@@ -53,11 +53,22 @@ input[type='range']  {
 <div class = chrom>
 <input id="test" type="range" value="0" /> 
 </div>
-<div class="form-group">
+<div class="form-group ">
 
 <p class="note">Current Pos: <span id="currentValue">0</span><span style="text-align: right"><a href=# id="show_all"> Show All</a></span></p>
-<form>
+<form class="form-inline well">
+<div class="form-group">
+ <select id="action_item"  class="form-control">
+            <option  class="action" selected="selected"> Select Search Type </option>
+            <option  class="action" value="ga" > Gene Accession</option>
+            <option  class="action" value="gid"> Gene Protein</option>
+            <option  class="action" value="cl"> Chromosome Location </option>
+            <option class="action" value="protein"> Protein </option>
+        </select>
+</div> 
+<div class="form-group">
   <input type="text" class="form-control input-lg" data-toggle="tooltip" title="Press Enter key to excute" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
+</div>
 </form>
  <div id="result"></div>
 </div>
@@ -121,7 +132,7 @@ $(function(){
       currentValue.html(a);
       map= location[Math.floor(a/100*27)];
       //alert(Math.floor(a/100*27));
-      $('#query').val("Search by " + map);
+      $('#query').val("cl:" + map);
      
       ;}
   });
@@ -145,6 +156,14 @@ $(function(){
   // Trigger Show All 
   $('#show_all').click(function (e){
     $('#query').val("Show All")
+    e.preventDefault();
+    getajsx({query:textboxValue}, "../cgi/summary.py")
+
+})
+   $('#action_item').click(function (e){
+    a=$('#query').val()
+
+    $('#query').val("Show All"&)
     e.preventDefault();
     getajsx({query:textboxValue}, "../cgi/summary.py")
 

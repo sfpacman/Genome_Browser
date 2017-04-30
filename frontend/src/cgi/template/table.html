@@ -45,9 +45,11 @@ border-style: none;
     {% for y in range(row) %}
     <tr>
     {% for i in range(col) %} 
-    {% set entry = codon.popitem() %}   
+    {% set entry = codon.popitem() %}
+    {% set freq = str(entry[1]).split("_") %}   
       <td> {{entry[0]}}</td> 
-      <td> {{entry[1]}}</td>
+      <td> {{freq[0]}}</td>
+      <td> {{freq[1]}}</td>
     {% if col > 1%}
      <td class="middle"></td>
      {% endif %}
