@@ -1,0 +1,25 @@
+#overall codon usage frequency
+
+#get chromosome frequency
+#calculate codon usage frequency
+
+
+#connect to database
+#get amino acid sequence
+import myseql.connector
+
+dbname   = "biodb"
+dbhost   = "hope"
+dbuser   = "sc001"   
+dbpass   = "#########"   
+port     = 3306
+
+sql_query = "select Amino_Acid_Seq from sequence"
+
+db = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+
+cursor = db.cursor()
+nrows = cursor.execute(sql_query)
+
+for row in cursor:
+    Amino_Acid_Seq = nrow[0]
