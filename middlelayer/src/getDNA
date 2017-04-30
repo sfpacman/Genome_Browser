@@ -1,0 +1,23 @@
+import mysql.connector
+
+
+def getDNAseq (DNA):
+    "Retrieve DNA sequence from the database"
+    dbname   = "biodb"
+    dbhost   = "hope"
+    dbuser   = "sc001"   
+    dbpass   = "#########"   
+    port     = 3306
+
+    sql = "SELECT DNA_sequence FROM sc001.Sequence"
+
+    db = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+
+    cursor = db.cursor()
+    nrows = cursor.execute(sql)
+
+    for row in cursor:
+        DNA_sequence = nrow[0]
+
+    print ( DNA_sequence, " ")
+    return;
