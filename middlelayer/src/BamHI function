@@ -1,3 +1,7 @@
+#!/usr/bin/python
+
+#RE BsuMI
+import re
 def BsuMI (DNA_sequence):
     "Find BsuMI restriction site and give position on the cut"
     bsumi = re.search(r"CTCGAG", DNA_sequence)
