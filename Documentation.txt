@@ -1,1 +1,43 @@
 
+
+
+
+
+Database:
+ 
+Figure 1: Schema for the Chromosome 8
+Table description for database:
+-- Table sc001.Gene
+  Protein_product CHAR(50) NOT NULL,
+  Genbank_Accession VARCHAR(10) NOT NULL,
+  Chromosome_location VARCHAR(20) NOT NULL,
+  Gene_name VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Genbank_Accession`)
+  
+-- Table sc001.Sequence
+  DNA_sequence LONGTEXT NOT NULL,
+  Amino_Acid_Seq MEDIUMTEXT NOT NULL,
+  Gene_Identifier VARCHAR(45) NOT NULL,
+  INDEX `fk_Sequence_Gene_idx` (Gene_Identifier ASC),
+##Gene identifier is the Genbank accession number as its filled in all the records 
+ PRIMARY KEY (Gene_Identifier),
+    FOREIGN KEY (Gene_Identifier) 
+    
+-- Table `sc001`.`Exon`
+  Exon_Start VARCHAR(45) NOT NULL,
+  Exon_End VARCHAR(45) NOT NULL,
+##Sequence_Gene_Identifier is the Genbank accession number as its filled in all the records 
+  Sequence_Gene_Identifier VARCHAR(45) NOT NULL,
+  ## to ensure multiple exons are still linked to the right gene
+  exon_ID INT NOT NULL AUTO_INCREMENT,
+## Foreign key to link to Gene
+  INDEX `fk_Exon_Sequence1_idx` (`Sequence_Gene_Identifier` ASC), 
+PRIMARY KEY (exon_ID))
+
+-- Table sc001.Restriction_Enzyme
+  idRestriction_Enzyme VARCHAR(7) NOT NULL,
+  Recognition_seq MEDIUMTEXT NOT NULL,
+## stand-alone table so primary key is the restriction enzyme ID
+  PRIMARY KEY (`idRestriction_Enzyme`)
+  
+
