@@ -1,55 +1,6 @@
-from collections import defaultdictDict 
-
-#codon list 
-#include TAA, TAG, TGA stop codons
-
-codons = ("TTC", "TTT", "TTA", "TTG", "CTT", "CTC", "CTA", "CTG", "ATT", "ATC", "ATA", "ATG", "GTT", "GTC", "GTA", "GTG", "TCT", "TCC", "TCA", "TCG", "CCT", "CCC", "CCA", "CCG", "ACT", "ACC", "ACA", "ACG", "GCT", "GCC", "GCA", "GCG", "TAT", "TAC", "TAA", "TAG", "CAT", "CAC", "CAA", "CAG", "AAT", "AAC", "AAA", "AAG", "GAT", "GAC", "GAA", "GAG", "TGT", "TGC", "TGA", "TGG", "CGT", "CGC", "CGA", "CGG", "AGT", "AGC", "AGA", "AGG", "GGT", "GGC", "GGA", "GGG")
-seq = "GATGACCGTACGTGACGGCTAACCTGTGAGACGTGACGCGTGAGACGCTAGCTATCGTTAACGTAGC"
-
-dic = {}
-for x in codons:
-    for codon in x:
-        dic[codon] = x
-
-#add number to each
-#seq is the cDNA
-
-for n in range(0, len(seq), 3):
-    query = seq(n=n+3)
-
-#count how many
-count=defaultdict(list)
-total = 0
-
-for codon in query:
-    total += counts[codon]
-
-
-#calculate frequencies
-
-freq = {}
-for codon in query:
-    if codon in dic:
-        tot = sum(counts[y] for y in dic[codon])
-        frequency = float(counts[codon]) / tot
-    else:
-        frequency = 0.00
-
-    freq[codon] = frequency
-
-#print
-
-for codon, frequency in freq.iteritems():
-    print (codon, frequency)
-    
-    
-    
-    
-    ---------------------
-    
 from collections import defaultdict
 
-seq = "AAAAAA"
+seq = "AAAAAAGCC"
 
 
 #codonsd
@@ -66,17 +17,19 @@ codons = (('GCU', 'GCC', 'GCA', 'GCG'),
 
 
 #separate them into list
-#get different start ORFs
+#insert in the list all codons that are present in the sequence
 c_list = []
 for codes in range(0, len(seq), 3):
     c_list.append(seq[codes:codes+3])
 
-#count codons
-#always integer
+
+#count codons present in the list
 count = defaultdict(int)
 for codon in c_list:
     count[codon] += 1
 
+    
+    ________________________________________________________________
 #calculate frequencies
 #create dictionary for freqs
 
@@ -90,5 +43,3 @@ for aaa in codons:
             frequency[codon] = 0
 
 print(frequency)
-
-    
