@@ -1,0 +1,9 @@
+def BsuMI (DNA_sequence):
+    "Find BsuMI restriction site and give position on the cut"
+    bsumi = re.search(r"CTCGAG", my_seq)
+    #start of the recognition site on the sequence
+    bsu_start = bsumi.start()
+    #cut of the enzyme on the sequence
+    bsu_cut = bsu_start + 3
+    print(bsu_cut)
+    return;
