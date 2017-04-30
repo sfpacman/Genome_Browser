@@ -1,0 +1,16 @@
+#!/usr/bin/python
+from Bio.Restriction import BamHI
+from Bio.Seq import Seq
+from Bio.Alphabet.IUPAC import IUPACAmbiguousDNA
+amb = IUPACAmbiguousDNA()
+
+def BamHi (DNA_sequence):
+    "Find BamHi restriction site and give position of sticky ends"
+    pos=[]
+    bam_start= BamHi.search(DNA_sequence)
+    for entry in bam_start:
+        bam_end = entry + 4
+       bam.append(entry)
+       pos.append(bam_end)
+    print(pos)
+    return;
