@@ -1,0 +1,16 @@
+  #!/usr/bin/python
+  from Bio.Restriction import EcoRI
+  from Bio.Seq import Seq
+  from Bio.Alphabet.IUPAC import IUPACAmbiguousDNA
+  amb = IUPACAmbiguousDNA()
+  
+  def EcoRi (DNA_sequence):
+  "Find EcoRI restriction site and give position of sticky ends"
+    pos=[]
+    eco_start= EcoRI.search(DNA_sequence)
+    for entry in eco_start:
+        eco_end = entry + 4
+        pos.append(entry)
+        pos.append(eco_end)
+    print (pos)
+    return;
