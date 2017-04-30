@@ -1,0 +1,79 @@
+import mysql.connector
+
+
+def getDNAseq (DNA):
+    "Retrieve DNA sequence from the database"
+    dbname   = "biodb"
+    dbhost   = "hope"
+    dbuser   = "sc001"   
+    dbpass   = "#########"   
+    port     = 3306
+
+    sql = "SELECT DNA_sequence FROM sc001.Sequence"
+
+    db = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+
+    cursor = db.cursor()
+    nrows = cursor.execute(sql)
+
+    for row in cursor:
+        DNA_sequence = nrow[0]
+
+    print ( DNA_sequence, " ")
+    return;
+    
+    import mysql.connector
+
+
+
+
+
+
+def getaaseq (aa):
+    "Retrieve amino acid sequence from the database"
+    dbname   = "biodb"
+    dbhost   = "hope"
+    dbuser   = "sc001"   
+    dbpass   = "#########"   
+    port     = 3306
+
+    sql = "SELECT Amino_Acid_Seq FROM sc001.Sequence"
+
+    db = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+
+    cursor = db.cursor()
+    nrows = cursor.execute(sql)
+
+    for row in cursor:
+        Amino_Acid_Seq = nrow[0]
+
+    print ( Amino_Acid_Seq, " ")
+    return;
+    
+    
+    
+    
+    
+    def getgenedetails (gene):
+    "Retrieve amino acid sequence from the database"
+    dbname   = "biodb"
+    dbhost   = "hope"
+    dbuser   = "sc001"   
+    dbpass   = "#########"   
+    port     = 3306
+
+    sql = "SELECT Protein_product, Chromosome_location, Gene_name FROM sc001.Gene"
+
+    db = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+
+    cursor = db.cursor()
+    nrows = cursor.execute(sql)
+
+    for row in cursor:
+       Protein_product = nrow[0]
+       Chromosome_location = nrow[1]
+       Gene_name = nrow[2]
+    print ( Protein_product, " ",  Chromosome_location, " ", Gene_name, " ")
+    return;
+
+
