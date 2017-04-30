@@ -2,11 +2,9 @@
 import sys
 import Bio
 from Bio import GenBank
-from Bio import SeqIO
 
 #for the Restriction_Enzyme table
-#1st value is the recognition sequence read in 5' and the 2nd value is the recognition sequence read in 3' direction
-Enz_name = {'EcoRI':{"GAATTC","CTTAAG"}, 'BamHI':{"GGATCC", "CCTAGG"},'BsuMI':{"CTCGAG", "GAGCTC"}}
+Enz_name = {'EcoRI':{"GAATTC"}, 'BamHI':{"GGATCC"},'BsuMI':{"CTCGAG"}}
 
 #create parser
 parser = GenBank.RecordParser()
@@ -16,6 +14,7 @@ List = []
 #create empty dictionary to insert values from each gene one at a time
 Insert = {}
 for record in GenBank.parse(open("chrom_CDS_8")):
+	#obtain accession and DNA sequence
 	Insert['accession'] = record.accession
 	Insert['seq'] = record.sequence
 	#create flags for genes without information in entry
@@ -28,12 +27,17 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 	#create empty lists to allow for multiple entries of exons
 	exon_start_list = []
 	exon_end_list = []
-	for feature in record.features:		
+	#the Genbank file has features section with relevent keys(eg. CDS, exon, etc) and values (Locations/qualifiers)
+	#record breaks down each entry as a seperate stand alone
+	for feature in record.features:	
 		if feature.key == "gene":
+			#The value "qualifier" contains labels for information given
 			for qualifier in feature.qualifiers:
 				if qualifier.key =="/gene=":
-					#cut off the quotation marks
+					#add each value to the dictionary under the heading gene_name
+					#{1:-1] cuts off the quotation marks
 					Insert["gene_name"] =qualifier.value[1:-1]
+					#creates a value 1 if record has this entry
 					has_gene = 1		
 		if feature.key == "source":
 			for qualifier in feature.qualifiers:
@@ -50,7 +54,8 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 					has_aa = 1 				
 		if feature.key == "exon":
 			locations = feature.location.split("..")
-			#split the two locations
+			#split the two locations by the ".." in between the two locations
+			#since there are multiple values a list was implemented which then is put into the dictionary
 			exon_start_list.append(locations[0]) 
 			Insert["exon_start"] = exon_start_list
 			has_ex_strt =1
@@ -65,6 +70,7 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 	if has_pp ==0:
 		Insert["protein_product"] = ("N/A")
 	if has_ex_strt ==0:
+		#update list and then dictionary for entry
 		exon_start_list.append("N/A")
 		Insert["exon_start"] = exon_start_list
 	if has_ex_end ==0:
@@ -74,7 +80,7 @@ for record in GenBank.parse(open("chrom_CDS_8")):
 		Insert["AA_seq"] = ("N/A")
 	#Add gene info to the main list
 	List.append(Insert)
-	#Clear th information to start again for the next entry
+	#Clear the information from each list and the dictionary to start again for the next entry
 	exon_start_list =[]
 	exon_end_list = []
 	Insert={}
