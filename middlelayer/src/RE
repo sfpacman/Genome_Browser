@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from Bio.Restriction import BamHI
-from Bio.Restriction import EcoRi
+from Bio.Restriction import EcoRI
 from Bio.Seq import Seq
 from Bio.Alphabet.IUPAC import IUPACAmbiguousDNA
 amb = IUPACAmbiguousDNA()
