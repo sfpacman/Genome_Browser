@@ -33,7 +33,7 @@ def getAAseq (aa, cDNA):
     "Retrieve amino acid sequence and DNA from the database"
     dbname   = "biodb"
     dbhost   = "hope"
-    dbuser   = "cc001"   
+    dbuser   = "sc001"   
     dbpass   = "#########"  
 
     sql_aa = "SELECT Amino_Acid_Seq, DNA_sequence FROM sc001.Sequence"
@@ -63,7 +63,7 @@ def getAAseq (aa, cDNA):
     "Retrieve gene details from the database"
     dbname   = "biodb"
     dbhost   = "hope"
-    dbuser   = "cc001"   
+    dbuser   = "sc001"   
     dbpass   = "#########"   
 
     sql_gene_det = "SELECT Protein_product, Chromosome_location, Gene_name FROM sc001.Gene"
