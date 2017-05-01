@@ -34,3 +34,4 @@ def get_codon_freq (seq):
                 frequency[codon] = 0
 
     print(frequency)
+    return;
