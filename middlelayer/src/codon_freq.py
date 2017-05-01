@@ -2,10 +2,10 @@ from collections import defaultdict
 
 def get_codon_freq (seq):
     #codonsd
-    codons = (('GCU', 'GCC', 'GCA', 'GCG'), ('UUA', 'UUG', 'CUU', 'CUC', 'CUA', 'CUG'), ('CGU', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG'), 
-          ('AAA', 'AAG'), ('AAU', 'AAC'), ('GAU', 'GAC'), ('UUU', 'UUC'), ('UGU', 'UGC'), ('CCU', 'CCC', 'CCA', 'CCG'), ('CAA', 'CAG'), 
-          ('UCU', 'UCC', 'UCA', 'UCG', 'AGU', 'AGC'), ('GAA', 'GAG'), ('ACU', 'ACC', 'ACA', 'ACG'), ('GGU', 'GGC', 'GGA', 'GGG'), 
-          ('CAU', 'CAC'), ('UAU', 'UAC'), ('AUU', 'AUC', 'AUA'), ('GUU', 'GUC', 'GUA', 'GUG'), ('UAA', 'UGA', 'UAG'))
+    codons = (('GCT', 'GCC', 'GCA', 'GCG'), ('TTA', 'TTG', 'CTT', 'CTC', 'CTA', 'CTG'), ('CGT', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG'), 
+          ('AAA', 'AAG'), ('AAT', 'AAC'), ('GAT', 'GAC'), ('TTT', 'TTC'), ('TGT', 'TGC'), ('CCT', 'CCC', 'CCA', 'CCG'), ('CAA', 'CAG'), 
+          ('TCT', 'TCC', 'TCA', 'TCG', 'AGT', 'AGC'), ('GAA', 'GAG'), ('ACT', 'ACC', 'ACA', 'ACG'), ('GGT', 'GGC', 'GGA', 'GGG'), 
+          ('CAT', 'CAC'), ('TAT', 'TAC'), ('ATT', 'ATC', 'ATA'), ('GTT', 'GTC', 'GTA', 'GTG'), ('TAA', 'TGA', 'TAG'))
 
 
     #separate them into list
