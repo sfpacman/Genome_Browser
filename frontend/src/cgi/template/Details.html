@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
+<!-- Pytont JinJa Template for details Page -->
 <html>
 <head>
 <title>{{ title }}</title>
@@ -19,6 +20,7 @@
   p {word-wrap: break-word;}
   </style>
 </head>
+<!-- List of gene details information-->
 <body>
 <div class="container.fluid">
 <h1 class="header"> {{ gene.id }} </h1>
@@ -44,7 +46,10 @@
 <div class="row">
 <div class="col col-sm-4"> Codon Usage Analysis  </div>
 <div class="desc col-sm-4"> 
+<form method="get" action="../cgi/details.py">
+<input type="hidden" value="#" name="search"></input>
 <button data-toggle="collapse" data-target="#codon"> Generate </button>
+</form>
  </div>
   </div>
  
@@ -68,7 +73,7 @@
 </div>
  </div>
   </div>
- 
+<!-- Hidden pannels for Gene -->
 <div class="panel panel-default collapse" id="seq">
 <div class="panel-heading">
  <h4 class="panel-title">
@@ -100,12 +105,13 @@
 <div class="panel-heading">
  <h4 class="panel-title"> Restrtiction Enzyme </h4>
  </div>
- <div class="panel-body" id="enzyme_display"> Here it is
+ <div class="panel-body" id="enzyme_display"> Working On it 
 </div>
 </div>
 </body>
 
 <script type="text/javascript">
+// To chnage button text 
 var color_click="";
 $("#change_color").click (function (event) {
 if( color_click == "changed"){ 
@@ -122,8 +128,10 @@ $("#DNA_display").click (function (event) {
 	 else { button_text= "Hide"; display_click = "changed";}
 	 $("#DNA_display").text(button_text);
 })
+//ajax to retrive resticiton enzyme result  
 var enzyme_click ="";
 var warning_msg= ["You’ve probably heard it before—if not, you’ve likely experienced it yourself","And just when I though things were starting to get better, everything had gone wrong again."];
+var dna= {{gene.DNA}}
 $(".r_enzyme").click (function (event) {
 	if( enzyme_click == ""){
    enzyme_click="changed";
@@ -135,19 +143,19 @@ $(".r_enzyme").click (function (event) {
  })
      .fail(function() {
      $("#enzyme").attr("class", "panel-default collapse in");
+     // function to return error msg
      $("#enzyme_display").html('<p><span class="glyphicon glyphicon-alert"></span>Error: '+warning_msg[Math.round(Math.random())]+' </p>');
     alert( jqxhr.status );
 
   });
-    $.get(source, {enzyme:textboxValue},function(result){
+    $.get(source, {enzyme:textboxValue,seq:dna},function(result){
           $("#enzyme_display").html(result) 
               });
 $("#enzyme").attr("class", "panel-default collapse in");
 $("#enzyme_menu").text("Compute - Click to Close");
 }
 })
-
- 
+// displaing differnet text on the restiction enzyme button  
 $("#enzyme_menu").click (function (event) {
 	if( enzyme_click == "changed"){
 $("#enzyme").attr("class", "panel-default collapse");
@@ -158,14 +166,4 @@ $("#enzyme").attr("class", "panel-default collapse");
 })
 </script>
 
-<!--
-<div  class="panel panel-default" id="codon">
-<h2> Codon Usage Analysis</h2>
-</div>
-<div class = "panel panel-default" id='enzyme'>
-<h2> Restritcion Enzyme</h2>
-</div>
 
-</div>
-</div>
-</body> -->
