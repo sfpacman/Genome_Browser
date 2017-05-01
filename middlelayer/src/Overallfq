@@ -6,7 +6,6 @@
 
 
 #connect to database
-#get amino acid sequence
 import myseql.connector
 
 dbname   = "biodb"
@@ -14,13 +13,17 @@ dbhost   = "hope"
 dbuser   = "cc001"   
 dbpass   = "#########"   
 
+sql_DNA = "SELECT DNA_sequence FROM sc001.Sequence"
+#open database connection
+connection = mysql.connector.connect (host=hope, user=cc001, db=biodb)
+#prepare cursor
+cursor = connection.cursor()
+#SQL query
+DNA= cursor.execute(sql_DNA)
 
-sql_query = "select Amino_Acid_Seq from sequence"
+# fetch all of the amino acid sequence
+data_seq = cursor.fetchall ()
 
-db = myseql.connector.connect (host=hope, user=cc001, db=biodb)
+#transcribe DNA sequence
 
-cursor = db.cursor()
-nrows = cursor.execute(sql_query)
 
-for row in cursor:
-    Amino_Acid_Seq = nrow[0]
