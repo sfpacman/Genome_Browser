@@ -58,7 +58,7 @@ def get_AAseq (aa, cDNA):
 
     return; 
     
-    def get_exon (seq):
+def get_exon (seq):
     "Retrieve exon position from the database"
     dbname   = "biodb"
     dbhost   = "hope"
