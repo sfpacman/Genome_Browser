@@ -34,6 +34,7 @@ input[type='range']  {
 </style>
 </head>
 <body>
+<!-- header Section -->
 <div class="container.fluid">
 <div class="start">
   <div class="row">
@@ -50,29 +51,35 @@ input[type='range']  {
 <hr>
 <div class="container">
 <br></br>
+<!-- Chromosome slider Section -->
 <div class = chrom>
 <input id="test" type="range" value="0" /> 
 </div>
+<!-- Query Section -->
 <div class="form-group ">
 
 <p class="note">Current Pos: <span id="currentValue">0</span><span style="text-align: right"><a href=# id="show_all"> Show All</a></span></p>
+
+<div class="container">
+<div class="row">
 <form class="form-inline well">
 <div class="form-group">
  <select id="action_item"  class="form-control">
-            <option  class="action" selected="selected"> Select Search Type </option>
-            <option  class="action" value="ga" > Gene Accession</option>
-            <option  class="action" value="gid"> Gene Protein</option>
-            <option  class="action" value="cl"> Chromosome Location </option>
-            <option class="action" value="protein"> Protein </option>
+            <option  class="action" value="0" selected="selected"> Select Search Type </option>
+            <option  class="action" value="ga" >Gene Accession</option>
+            <option  class="action" value="gid">Gene Name</option>
+            <option  class="action" value="cl">Chromosome Location </option>
+            <option class="action" value="protein">Protein Name</option>
         </select>
-</div> 
-<div class="form-group">
+</div>
+<div class="form-group input-group-lg" >
   <input type="text" class="form-control input-lg" data-toggle="tooltip" title="Press Enter key to excute" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
 </div>
 </form>
+<!-- a placehoder for displaying ajax result-->
  <div id="result"></div>
 </div>
-
+<!-- Description -->
 <div class= 'row'>
   <div class="col-md-4">
     <div class="card">
@@ -80,7 +87,7 @@ input[type='range']  {
       <div class="container">
         <h2>Chiara</h2>
         <p class="title"> The Boss</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>In charge of API development</p>
         <p>example@example.com</p>
         <p><button class="button">Contact</button></p>
       </div>
@@ -93,8 +100,8 @@ input[type='range']  {
       <div class="container">
         <h2>Pak</h2>
         <p class="title">The Mastermind</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>example@example.com</p>
+        <p>In charge of the front-end development</p>
+        <p>pyu02@mail.bbk.ac.uk</p>
         <p><button class="button">Contact</button></p>
       </div>
     </div>
@@ -106,24 +113,25 @@ input[type='range']  {
       <div class="container">
         <h2>Chelsea</h2>
         <p class="title">The Enforcer</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>In charge of the database development</p>
         <p>example@example.com</p>
         <p><button class="button">Contact</button></p>
       </div>
     </div>
   </div>
 </div>
+<!-- a hidden form for detail page cgi  -->
 <form method="get" action="../cgi/details.py">
 <input type="hidden" value="#" name="search"></input>
 </form>
 </body>
 <script type="text/javascript">
+//  bootstrap hints init 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });
-
+// functino for slider cytogenetic position conversion function  
 $(function(){
-
   var currentValue = $('#currentValue');
   var location =  ['p23.2', 'p23.1', 'p22', 'p21.3', 'p21.2', 'p21.1', 'p12', 'p11.22' ,'p11.1', 'q11.21', 'q11.22', 'q11.23', 'q12.1', 'q12.3', 'q13.2', 'q13.3', 'q21.11', 'q21.13', 'q21.3', 'q22.1', 'q22.2', 'q23.1', 'q23.3', 'q24.11', 'q24.13', 'q24.21', 'q24.22', 'q24.3'];
   $('#test').change(function(){
@@ -133,17 +141,19 @@ $(function(){
       map= location[Math.floor(a/100*27)];
       //alert(Math.floor(a/100*27));
       $('#query').val("cl:" + map);
-     
-      ;}
+      $('#action_item').prop('selectedIndex', 3);
+      }
   });
    
-  // Trigger the event on load, so
-  // the value field is populated:
+  // Trigger the event on load, so the value field is populated:
   $('#test').change();
+
+  // function for calling ajsx  
   function getajsx(textboxValue, source){
     alert('you enter ' + textboxValue);
         if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
   }
+  // ajsx for status update 
    var jqxhr = $.ajax( {url:source,dataType: 'html'}) .done(function() {
     alert( "success" );})
      .fail(function() {
@@ -153,31 +163,43 @@ $(function(){
           $("#result").html(result) 
               });
       };
-  // Trigger Show All 
+  // Function for triggering Show All action
   $('#show_all').click(function (e){
     $('#query').val("Show All")
     e.preventDefault();
     getajsx({query:textboxValue}, "../cgi/summary.py")
 
 })
-   $('#action_item').click(function (e){
+  // function for modtifing the text in textbox when option from search type is changed 
+   $('#action_item').change(function (e){
+    if ($(this).val() != '0') {
     a=$('#query').val()
+    if (a.indexOf(":") != -1){
+    $('#query').val($('#action_item option:selected').val()+":"+a.split(":")[1]);
+    }
+    else{ $('#query').val($('#action_item option:selected').val()+":"+a);}
+  }
+    
 
-    $('#query').val("Show All"&)
-    e.preventDefault();
-    getajsx({query:textboxValue}, "../cgi/summary.py")
+   })
 
-})
-  //Trigger ajax query 
+
+  //Trigger action when textbox input   
   $('#query').keypress(function (e){
 
   var key = e.which ;
   var textboxValue =  $('#query').val();
+    if( textboxValue.indexOf(":") != -1){
+      opt=textboxValue.split(":");
+      $('#action_item').val(opt[0]);
+    }
+    //Trigger Ajax when enter key is pressed 
     if( key == 13){
     e.preventDefault();
     getajsx({query:textboxValue}, "../cgi/summary.py") ;   
       
-    };});
+    }
+  });
 
 });
 </script>

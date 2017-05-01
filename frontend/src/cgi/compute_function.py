@@ -35,6 +35,8 @@ class codon_usage:
 		tempCodontable = templateEnv.get_template( "table.html" )
 		return(tempCodontable.render( row =row ,codon= self.codon_d, col=col))
 
+'''
 b= OrderedDict({"A":"35_12","B":"42_1","C":"23_23","D":"2_12"} )
 a= codon_usage(b)
 print(a.make_html(3,1))
+'''

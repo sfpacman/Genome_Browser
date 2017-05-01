@@ -53,14 +53,37 @@ input[type='range']  {
 <div class = chrom>
 <input id="test" type="range" value="0" /> 
 </div>
-<div class="form-group">
+
 
 <p class="note">Current Pos: <span id="currentValue">0</span></p>
+<div class="form-group">
 <form>
-  <input type="text" class="form-control input-lg" id="query" name="query" placeholder="How can I Help ?... ">
+<div class="row">
+<div class="input-group input-group-lg">
+<div class="col-xs-2">
+         <select id="action_item"  class="form-control">
+            <option  class="action" value="0" selected="selected"> Select Search Type </option>
+            <option  class="action" value="ga" >Gene Accession</option>
+            <option  class="action" value="gid">Gene Name</option>
+            <option  class="action" value="cl">Chromosome Location </option>
+            <option class="action" value="protein">Protein Name</option>
+        </select>
+      </div>
+      </div>
+    <div class="input-group input-group-lg">
+   <div class="col-xs-10">
+    
+      <input type="text" class="form-control input-lg" data-toggle="tooltip" title="Press Enter key to excute" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
+      </div>
+      
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
 </form>
+</div>
  <div id="result"></div>
 </div>
+<
 
 <div class= 'row'>
   <div class="col-md-4">
