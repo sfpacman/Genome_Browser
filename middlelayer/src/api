@@ -5,12 +5,12 @@ def getDNAseq (DNA):
     "Retrieve DNA sequence from the database"
     dbname   = "biodb"
     dbhost   = "hope"
-    dbuser   = "cc001"   
+    dbuser   = "sc001"   
     dbpass   = "#########"   
 
     sql_DNA = "SELECT DNA_sequence FROM sc001.Sequence"
     #open database connection
-    connection = mysql.connector.connect (host=hope, user=cc001, db=biodb)
+    connection = mysql.connector.connect (host=hope, user=sc001, db=biodb)
     #prepare cursor
     cursor = connection.cursor()
     #SQL query
@@ -38,7 +38,7 @@ def getAAseq (aa, cDNA):
 
     sql_aa = "SELECT Amino_Acid_Seq, DNA_sequence FROM sc001.Sequence"
     #open database connection
-    connection = myseql.connector.connect (host=hope, user=cc001, db=biodb)
+    connection = myseql.connector.connect (host=hope, user=sc001, db=biodb)
     #prepare cursor
     cursor = connection.cursor()
     #SQL query
@@ -68,7 +68,7 @@ def getAAseq (aa, cDNA):
 
     sql_gene_det = "SELECT Protein_product, Chromosome_location, Gene_name FROM sc001.Gene"
     #open database connection
-    connection = myseql.connector.connect (host=hope, user=cc001, db=biodb)
+    connection = myseql.connector.connect (host=hope, user=sc001, db=biodb)
     # prepare cursor
     cursor = connection.cursor()
     #SQL query
