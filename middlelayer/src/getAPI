@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import mysql.connector
 
-def getDNAseq (DNA):
+def get_DNAseq (DNA):
     "Retrieve DNA sequence from the database"
     dbname   = "biodb"
     dbhost   = "hope"
@@ -29,7 +29,7 @@ def getDNAseq (DNA):
     return;
 
 
-def getAAseq (aa, cDNA):
+def get_AAseq (aa, cDNA):
     "Retrieve amino acid sequence and DNA from the database"
     dbname   = "biodb"
     dbhost   = "hope"
@@ -58,8 +58,37 @@ def getAAseq (aa, cDNA):
 
     return; 
     
+    def get_exon (seq):
+    "Retrieve exon position from the database"
+    dbname   = "biodb"
+    dbhost   = "hope"
+    dbuser   = "sc001"   
+    dbpass   = "#########"  
     
-    def getgenedetails (gene):
+    # translate front end variables to database variables    
+
+    sql_exon = "SELECT Exon_Start, Exon_End FROM sc001.Exon
+    #open database connection
+    connection = myseql.connector.connect (host=hope, user=sc001, db=biodb)
+    #prepare cursor
+    cursor = connection.cursor()
+    #SQL query
+    exon_seq = cursor.execute(sql_exon)
+
+    #retrieve data 
+
+    for row in cursor:
+        Exon_Start = exon_seq[0]
+        Exon_End = exon_seq[1]
+       
+    #close cursor and connection
+    cursor.close ()
+    #print findings
+    print (Exon_Start, " ", Exon_End, " ")
+    return; 
+
+    
+    def get_genedetails (gene):
     "Retrieve gene details from the database"
     dbname   = "biodb"
     dbhost   = "hope"
