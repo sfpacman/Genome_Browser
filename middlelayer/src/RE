@@ -12,8 +12,7 @@ def find_BamHi (DNA_sequence):
         bam_end = entry + 4
         bam.append(entry)
         pos.append(bam_end)
-    print(pos)
-    return;
+    return(pos);
 
 import re
 def find_BsuMi (DNA_sequence):
@@ -23,8 +22,7 @@ def find_BsuMi (DNA_sequence):
     bsu_start = bsumi.start()
     #cut of the enzyme on the sequence
     bsu_cut = bsu_start + 3
-    print(bsu_cut)
-    return;
+    return(bsu_cut);
 
 def find_EcoRi (DNA_sequence):
     "Find EcoRi restriction site and give position of sticky ends"
@@ -34,6 +32,5 @@ def find_EcoRi (DNA_sequence):
         eco_end = entry + 4
         pos.append(entry)
         pos.append(eco_end)
-    print (pos)
-    return;
+    return(pos);
 
