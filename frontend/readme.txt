@@ -1,2 +1,1 @@
-
-Webpage Created by Pak
+The frontend section is written by Pak
