@@ -35,7 +35,7 @@ for entry in List:
 	#Import data into the sequence table
 	sqlquery2= "INSERT INTO sc001.Sequence (DNA_sequence, Amino_Acid_Seq, Gene_Identifier)  VALUES ("+chr(39)+DNA_sequence+chr(39)+", "+chr(39)+Amino_Acid_Sequence+chr(39)+", "+chr(39)+Genbank_Accession+chr(39)+")ON DUPLICATE KEY UPDATE Gene_Identifier ="+chr(39)+Genbank_Accession+chr(39)+";"
 	nrows=cursor.execute(sqlquery2)	
-	db.commit
+	db.commit()
 	#Created a loop to insert multiple entries as needed for each gene
 	for i in range(len(Exon_start)):
 		sqlquery3= "INSERT INTO sc001.Exon (Exon_Start, Exon_End, Sequence_Gene_Identifier) VALUES("+chr(39)+Exon_start[i]+chr(39)+", "+chr(39)+Exon_end[i]+chr(39)+", "+chr(39)+Genbank_Accession+chr(39)+");"
