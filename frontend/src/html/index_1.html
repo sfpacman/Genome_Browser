@@ -76,9 +76,10 @@ input[type='range']  {
   <input type="text" class="form-control input-lg" data-toggle="tooltip" title="Press Enter key to excute" id="query" name="query" placeholder="How can I Help ?...press enter to excute">
 </div>
 </form>
+</div>
 <!-- a placehoder for displaying ajax result-->
  <div id="result"></div>
-</div>
+
 <!-- Description -->
 <div class= 'row'>
   <div class="col-md-4">
@@ -151,8 +152,7 @@ $(function(){
   // function for calling ajsx  
   function getajsx(textboxValue, source){
     alert('you enter ' + textboxValue);
-        if (textboxValue.replace(/^\s+|\s+$/g, '') == 'Show All'){
-  }
+  
   // ajsx for status update 
    var jqxhr = $.ajax( {url:source,dataType: 'html'}) .done(function() {
     alert( "success" );})
@@ -196,7 +196,7 @@ $(function(){
     //Trigger Ajax when enter key is pressed 
     if( key == 13){
     e.preventDefault();
-    getajsx({query:textboxValue}, "../cgi/summary.py") ;   
+    getajsx(textboxValue, "../cgi/summary.py") ;   
       
     }
   });

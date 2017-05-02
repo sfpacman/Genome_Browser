@@ -1,8 +1,14 @@
 #!/usr/bin/python3
+'''
+Script developed by Pak Hin Yu
+This script will create a html summary table with a link-out for detail information for a particular gene  
+'''
 import cgi
 import cgitb
 import jinja2
 import getdummy
+#the API folder (/middlelayer/src/) needed to be moved to the forntend folder  
+import findAPI
 cgitb.enable()
 
 
@@ -25,8 +31,8 @@ if query size > 1:
 	if entry[0] in action_item:
 		action = entry[0]
 		search_item = entry[1]
-		#findAPI.find_all(action,search_item)
-		items= getdummy.getdummy(10)
+		findAPI.find_all(action,search_item)
+		#items= getdummy.getdummy(10)
 		print ("Content-Type: text/html\n")
 		print (entry[0])
 		print(tempSummary.render(items = items,source_path=source_path))
