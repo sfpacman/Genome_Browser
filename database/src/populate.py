@@ -13,6 +13,9 @@ db = mysql.connector.connect(host="hope" ,port=3306,user="sc001",db="sc001",pass
 #create a cursor for the database
 cursor = db.cursor()
 for entry in List:
+	"""
+	Place all entries in the main list of the parsed records to an assigned value to input into database and import via SQL queries
+	"""
 	#assign values to the entries in the dictionary
 	Genbank_Accession = entry ['accession'][0]
 	Gene_name = entry['gene_name']
