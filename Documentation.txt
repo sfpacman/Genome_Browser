@@ -1,11 +1,24 @@
-The frontend is divided into two parts: HTML and CGI scripts. In HTML folder the static webpage will be stored (index page) along with multimedia objects. In the CGI folder the dynamic webpage is be stored in the form of Python script and HTML template (jinja2).
-
+The frontend is divided into two parts: HTML and CGI scripts. In HTML folder, the static webpages are stored (index page) along with multimedia objects. In the CGI folder the dynamic webpage is be stored in the form of Python script and HTML template (jinja2). Python script will access API functions from the middlelayer folder to retrive and process information based on the user input query from the index page. Both HTML and CSS markup are used for all of the webpage. Particuraly,bootstrap is used extenstly for producing mobile friendly webpags.   
+HTML:
+ the Index webpage is stored under this folder in which javascript (Jquery) enables displaying summary table based on user input.  
+CGI:
+ Instead of printing html code, a template module (JinJa2) is used to produced complex html page for the dynamic webpage (details page, summary table on the details page). All template html files are under template folder under CGI
 The code for the webpage is HTML and is in the file index.html, the CGI uses a Python script, the codon table CGI is in the file table.py
-The summary list index is in the file summary.py
-The detail page CGI is in the file details.py
-The middle layer code that was accessed was….
+ Three python scripts are developed for displaying data: 
+summary.py is used for making the summary table on the list index in which users can access detail infromation throught the link:
+summary.py uses findAPI.find_summary to retrive informatian based on user input data (gene name[DNA/ID] , protein product[protein], gene accession[gc], chromosome location[cl] )
+
+compute_function.py is a collection of utility functions to display data based on the API functions results:
+ markup is a function that insert a particular tag into a string ( good for highlighting sequecing region or indictate restriction enzyme site) 
+ codon_usage is a object that can store and display codon usuage analysis in a html table form (in the combination of table.html). 
+The details.py is used for making details.html and allow user to highlight coding region, get the restriction enzyme site of The selected sequence and caculate the codon usage analysis which will access the following API function:
+ details.py used  findAPI.find_exon() to get a posistion list of exon boundary loaction  
+ details.py used both Overallfq.py and codon_freq.py to caculate the codon usage frequency in a python dicitonary form.
+ details.py used REnz.py to get a posistion list of restriction enzyme size based on the input sequence
+ 
+The dummydata.py is used for producing phony data to test the above-mentioned functions by supply correspoding data. 
 How the results were displayed in CGI scripts….
-The semantic markup that was used was HTML markup tags
+
 
 
 
