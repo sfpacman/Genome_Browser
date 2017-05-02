@@ -1,4 +1,4 @@
-Frontend 
+
 Front End:
 The frontend is divided into two parts: HTML and CGI scripts. In HTML folder, the static webpages are stored (index page) along with multimedia objects. In the CGI folder the dynamic webpage is be stored in the form of Python script and HTML template (jinja2). Python script will access API functions from the middle layer folder to retrieve and process information based on the user input query from the index page. Both HTML and CSS markup are used for all of the webpage. Particularly, bootstrap is used extensively for producing mobile friendly webpage. 
 
