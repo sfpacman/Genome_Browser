@@ -44,7 +44,7 @@ def find_all (gene, types)
         all_list.append(Genbank_Accession)
     
     #insert in a dictionary
-    all_dict = {DNA = everything[0], protein= gene_det[1], location= gene_det[2], gid= gene_det[3], ga= gene_det[4]}
+    all_dict = {DNA = everything[0], protein= gene_det[1], location= gene_det[2], id= gene_det[3], ga= gene_det[4]}
     all_list.append(all_dict)
 
     #close cursor and connection
@@ -91,7 +91,7 @@ def find_summary (gene,types):
         Genbank_Accession = gene_det[3]
         
     #insert in dictionary
-    result_dict= {protein= gene_det[0], location= gene_det[1], gid= gene_det[2], ga= gene_det[3]}
+    result_dict= {p_name= gene_det[0], location= gene_det[1], id= gene_det[2], ga= gene_det[3]}
     result_list.append(result_dict)
         
     #close cursor and connection
