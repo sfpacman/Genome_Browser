@@ -44,7 +44,7 @@ def find_all (gene, types)
         all_list.append(Genbank_Accession)
     
     #insert in a dictionary
-    all_dict = {DNA = everything[0], protein= gene_det[1], location= gene_det[2], id= gene_det[3], ga= gene_det[4]}
+    all_dict = {DNA = everything[0], Protein= gene_det[1], location= gene_det[2], id= gene_det[3], ga= gene_det[4]}
     all_list.append(all_dict)
 
     #close cursor and connection
