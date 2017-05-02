@@ -2,6 +2,7 @@
 Front End:
 The frontend is divided into two parts: HTML and CGI scripts. In HTML folder, the static webpages are stored (index page) along with multimedia objects. In the CGI folder the dynamic webpage is be stored in the form of Python script and HTML template (jinja2). Python script will access API functions from the middle layer folder to retrieve and process information based on the user input query from the index page. Both HTML and CSS markup are used for all of the webpage. Particularly, bootstrap is used extensively for producing mobile friendly webpage. 
 
+JinJa2 module is included in this git. 
 HTML:
  The Index webpage is stored under this folder in which Javascript (Jquery) enables displaying summary table based on user input.  
 
@@ -10,15 +11,17 @@ CGI:
 Three python scripts are developed for displaying data: 
 -summary.py is used for making the summary table on the list index in which users can access detail information through the link:
 -summary.py uses find API.find_summary to retrieve information based on user input data (gene name[DNA/ID] , protein product[protein], gene accession[gc], chromosome location[cl] )
--compute_function.py is a collection of utility functions to display data based on the API functions results.
 
-Markup is a function that insert a particular tag into a string which is good for highlighting sequencing region or indicating restriction enzyme site used in:
+-compute_function.py is a collection of utility functions to display data based on the API functions results:
+
+- Markup is a function that insert a particular tag into a string which is good for highlighting sequencing region or -indicating restriction enzyme site used in:
 - codon_usage is an object that can store and display codon usage analysis in a html table form in the combination of table.html. 
 
 The details.py is used for making details.html and allow user to highlight coding region, get the restriction enzyme site of the selected sequence and calculate the codon usage analysis which will access the following API function:
+
 -details.py used  findAPI.find_exon() to get a position list of exon boundary location  
 -details.py used both Overallfq.py and codon_freq.py to calculate the codon usage frequency in a python dictionary form.
- -details.py used REnz.py to get a position list of restriction enzyme size based on the input sequence 
+-details.py used REnz.py to get a position list of restriction enzyme size based on the input sequence 
 
 The dummydata.py is used for producing phony data to test the above-mentioned functions by supply corresponding data. 
 
@@ -64,7 +67,7 @@ PRIMARY KEY (exon_ID))
   PRIMARY KEY (`idRestriction_Enzyme`)
   
 Parsing:
-The parsing code uses functions imported from the Biopython’s module Genbank and iterates through each record one at a time extracting all of the wanted pieces of information to a dictionary. At the end of the parsing the dictionary is inserted into a main list with each of the relevant pieces of information associated with one gene. A separate dictionary was created for the restriction enzymes as they aren’t dependent on the genes. 
+The parsing code uses functions imported from the Biopython’s module(Not included in this git)  Genbank and iterates through each record one at a time extracting all of the wanted pieces of information to a dictionary. At the end of the parsing the dictionary is inserted into a main list with each of the relevant pieces of information associated with one gene. A separate dictionary was created for the restriction enzymes as they aren’t dependent on the genes. 
 Populating:
 MySQL connector driver was used to connect the MySQL statements to the database to populate with Python. The parsed entries in the list are assigned to values to input into the SQL statements to then populate the database in the correct tables and columns with the appropriate records for each gene. The python coding for the exon table was adjusted to ensure the allowance for multiple entries. 
 
