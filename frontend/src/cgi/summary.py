@@ -16,7 +16,7 @@ a=form["query"].value.lower()
 entry=a.split(":")
 query_size = len(entry)
 #action definition 
-action_item= ["gid","protein","ga","cl"]
+action_item= ["gid","protein","ga","cl","Show All"]
 
 #generating html page
 if query size > 1:
@@ -24,9 +24,10 @@ if query size > 1:
 	if entry[0] in action_item:
 		action = entry[0]
 		search_item = entry[1]
-		#getrealstuff(action_itme,search_item)
+		#findAPI.find_all(action,search_item)
 		items= getdummy.getdummy(10)
 		print ("Content-Type: text/html\n")
+		print (entry[0])
 		print(tempSummary.render(items = items))
 	else:
 		print ("Content-Type: text/html\n")

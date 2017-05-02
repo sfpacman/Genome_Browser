@@ -46,7 +46,7 @@ border-style: none;
     <tr>
     {% for i in range(col) %} 
     {% set entry = codon.popitem() %}
-    {% set freq = str(entry[1]).split("_") %}   
+    {% set freq = entry[1].split("_") %}   
       <td> {{entry[0]}}</td> 
       <td> {{freq[0]}}</td>
       <td> {{freq[1]}}</td>
