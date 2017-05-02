@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-''' this is a collect of functions to generate the dummy data'''
+'''
+Script developed by Pak Hin Yu 
+this is a collect of functions to generate the dummy data'''
 import random
 
 def getdummyenzyme():
