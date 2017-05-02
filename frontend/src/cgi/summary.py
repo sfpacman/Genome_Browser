@@ -11,6 +11,7 @@ templateLoader = jinja2.FileSystemLoader( searchpath="template" )
 templateEnv = jinja2.Environment( loader=templateLoader )
 
 tempSummary = templateEnv.get_template( "Summary.html" )
+source_path = "../cgi/details.py"
 #retrving input from the website 
 a=form["query"].value.lower()
 entry=a.split(":")
@@ -28,7 +29,7 @@ if query size > 1:
 		items= getdummy.getdummy(10)
 		print ("Content-Type: text/html\n")
 		print (entry[0])
-		print(tempSummary.render(items = items))
+		print(tempSummary.render(items = items,source_path=source_path))
 	else:
 		print ("Content-Type: text/html\n")
 		print('<p><span class="glyphicon glyphicon-alert"></span>Error: not an valid action  </p>')
