@@ -36,6 +36,7 @@ if "search" in form:
 elif "enzyme" in form:
 	#for enzyme html section 
 	print ("Content-Type: text/html\n")
+	seq=form[sequence]
 	#get_pos_enzyme(seq, form["enzyme"].value)
 	enzyme = compute_function.markup(seq,pos_list,"^")
 	print (enzyme)
