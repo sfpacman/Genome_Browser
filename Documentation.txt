@@ -1,5 +1,4 @@
-Frontend:
-The forntend is divided into two parts : htmge and cgi scripts. In HTML folder, only static webpage will be stored(index page) along with multimedia objects. In cgi folder,dynamic webpage will be stored in the form of Python sxript and html template (jinja2).
+The frontend is divided into two parts: HTML and CGI scripts. In HTML folder the static webpage will be stored (index page) along with multimedia objects. In the CGI folder the dynamic webpage is be stored in the form of Python script and HTML template (jinja2).
 
 The code for the webpage is HTML and is in the file index.html, the CGI uses a Python script, the codon table CGI is in the file table.py
 The summary list index is in the file summary.py
