@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''
 Script developed by Pak Hin Yu 
+two utilities functions for details webpage 
 '''
 import jinja2
 from collections import OrderedDict 
