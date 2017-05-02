@@ -11,9 +11,12 @@ parser = GenBank.RecordParser()
 record = parser.parse(open("chrom_CDS_8"))
 #create empty list to put all information into
 List = []
-#create empty dictionary to insert values from each gene one at a time
+
 Insert = {}
 for record in GenBank.parse(open("chrom_CDS_8")):
+	"""
+	To extract each piece of information and insert values from each gene one at a time empty dictionary 
+	"""
 	#obtain accession and DNA sequence
 	Insert['accession'] = record.accession
 	Insert['seq'] = record.sequence
