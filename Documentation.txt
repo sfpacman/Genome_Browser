@@ -47,4 +47,8 @@ PRIMARY KEY (exon_ID))
 ## stand-alone table so primary key is the restriction enzyme ID
   PRIMARY KEY (`idRestriction_Enzyme`)
   
+Parsing:
+The parsing code uses functions imported from the Biopython’s module Genbank and iterates through each record one at a time extracting all of the wanted pieces of information to a dictionary. At the end of the parsing the dictionary is inserted into a main list with each of the relevant pieces of information associated with one gene. A separate dictionary was created for the restriction enzymes as they aren’t dependent on the genes. 
+Populating:
+MySQL connector driver was used to connect the MySQL statements to the database to populate with Python. The parsed entries in the list are assigned to values to input into the SQL statements to then populate the database in the correct tables and columns with the appropriate records for each gene. The python coding for the exon table was adjusted to ensure the allowance for multiple entries. 
 
