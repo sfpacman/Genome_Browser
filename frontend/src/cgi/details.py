@@ -57,6 +57,7 @@ elif "codon" in form:
 	''' 
 	freq=codon_freq.get_codon_freq(form["codon"].value)
 	'''
+	print ("Content-Type: text/html\n")
 	freq=OrderedDict({"A":"35_12","B":"42_1","C":"23_23","D":"2_12"}
 	display=compute_function.codon_usage(freq)
 	print(display.make_html(2,2))
